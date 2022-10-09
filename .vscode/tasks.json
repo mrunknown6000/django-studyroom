@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [{
+			"label": "tailwindstart",
+			"type": "shell",
+			"command": "cd ../.venv-3.8/Scripts; ./activate; cd ../../studyroom/; dir; python manage.py tailwind start",
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			}
+	}]
+}

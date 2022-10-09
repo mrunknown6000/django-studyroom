@@ -1,0 +1,24 @@
+{% load tailwind_tags %}
+{% tailwind_css %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+<link rel="stylesheet" href="{% static '/css/default.css' %}">
+
+<nav>
+    <div class="flex m-0 p-0 justify-around" id="navbar">
+        <div class="navbar-items">
+            <a href="/">Logo</a>
+        </div>
+
+        <div class="navbar-items"><a href="http://">Math</a></div>
+        <div class="navbar-items"><a href="http://">English</a></div>
+        <div class="navbar-items"><a href="http://">Literature</a></div>
+        <div class="navbar-items"><a href="http://">Geometry</a></div>
+        <div class="navbar-items"><a href="http://">History</a></div>
+        <div class="navbar-items"><a href="http://">Biology</a></div>
+        <div class="navbar-items"><a href="http://">Technology</a></div>
+    </div>
+</nav>
+

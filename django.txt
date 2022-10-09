@@ -1,0 +1,174 @@
+models.CharField()		: max_length, min_length, strip, empty_value, **options
+models.IntergerField()	: **options
+models.BooleanField()	: **options
+models.DateField()		: auto_now, auto_now_add, **options
+models.DateTimeField()	: auto_now, auto_now_add, **options
+models.FloatField()		: **options
+models.DurationField()	: **options
+models.EmailField()		: max_length, **options
+models.FileField()		: upload_to, storage, max_length, **options
+models.ImageField()		: upload_to, height_field, width_field, max_length, **options
+models.TextField()		: **options
+
+Src 2: **options: required, label, label_suffix, widget, help_text, error_messages, validators,
+localize, disabled
+
+Src 1: **options: null, blank, choices, db_column, db_index, db_tablespace, default, editable,
+error_messages, help_text, primary_key, unique, unique_for_date, unique_for_month,
+unique_for_year, verbose_name, validators
+
+=========================================================
+Trước khi chạy Django: pip install Django
+Ktra Version Django: django-admin --version
+Tạo một project Django: django-admin startproject [Tên project]
+==== Cấu trúc project Django ====
+/Tên project/
+	/Tên app(trùng tên project)/
+		__init__.py		: File khởi tạo
+		asgi.py			: File liên kết giữa Code và Apps Server
+		settings.py		: File cài đặt của project như URL, Template, InstallApp,...
+		urls.py			: File trỏ đường dẫn
+		wsgi.py			: File deploy server
+	db.sqlite3			: Database do Django tạo sẵn
+	manage.py			: File để chạy project
+
+========= Bài 1: =====================================================================================
+* Khởi tạo app base: python manage.py startapp base
+/base/
+	/migrations/		: Database
+		__init__.py		: File khởi tạo
+	__init__.py			: File khởi tạo
+	admin.py			: ????
+	apps.py				: App Base
+	models.py			: Khai báo class
+	tests.py			: Test project
+	views.py			: Viết Logic sử lý
+* Để hiển thị trang web với đường dẫn URL tự tạo:
+	+ Import "from django.http import HttpResponse"
+	+ Tạo một hàm với tên và truyền vào request và 
+	return HttpResponse(<string>)	=> Hiện thị trên trang web
+	+ Khai báo vào urlpatterns
+	path('[trỏ web]/', [tên hàm])
+VD: 
+def home(request):
+    return HttpResponse('homepage')
+urlpatterns = [
+	path('home/', home),
+]
+	
+========= Bài 2 =====================================================================================
+* Cắt hàm từ file [tên project]\urls.py 
+chuyển sang base\views.py và thêm 
+dòng 'from django.http import HttpResponse'
+* Tạo file urls.py trong base và 
+'from django.urls import path' và 'from . import views'
+* Thêm urlpatterns = [] vào trong base\urls.py
+* Dán Path(ngoại trừ admin) URLs từ [tên project]\urls.py
+sang base\urls.py và gán thêm name cho mỗi path
+* Trong [tên project]\urls.py sửa thêm include sau 
+from django.urls import path, 
+* Thêm dòng path('', include('base.urls')) trong urlpatterns của
+[tên project] để sử dụng toàn bộ URL trong base\urls.py
+
+__base\views.py_________
+from django.http import HttpResponse
+
+def home(request):
+	return HttpResponse('homepage')
+
+__base\urls.py__________
+from django.urls import path
+from . import views
+
+urlpatterns = [
+	path('home/', views.home, name="home"
+]
+
+========= Bài 3: =====================================================================================
+- Để Tạo Templates								<<<<<<<<<<<<<<
+* Tạo folder tên là "templates" trong thư mục [Tên Project]
+* Sau đó tạo file home.html trong templates
+* Trong file views.py đổi return thành:
+render(request, 'home.html')
+* Trong file settings.py, trong TEMPLATES có mục DIRS thêm:
+BASE_DIR / 'templates'
+
+- Sử dụng {% include '[tên file cần include]'%} <<<<<<<<<<<<<<
+* Tạo một file navbar.html chứa logo, nav bar,...
+* Sau đó trong home.html trên đầu của file thêm
+{% include 'navbar.html' %}
+
+__templates\navbar.html______
+<a href="/">
+    <h1>Logo</h1>
+</a>
+<hr>
+
+
+- Sử dụng {% extends '[tên file cần extends]' %} <<<<<<<<<<<<<<
+* Trên đầu file html, thêm dòng:
+{% extends 'navbar.html' %}
+
+- Cách setup SSH với GitHub
+BƯỚC 1: KHỞI TẠO MỘT KEY SSH
+* Mở Git Bash và gõ lệnh:
+$ ssh-keygen -t ed25519 -C "[email của bạn]" 		
+hoặc
+$ ssh-keygen -t rsa -b 4096 -C "email của bạn"
+và ấn enter 3 lần để bỏ qua setup passphrase và sử dụng chỗ lưu ssh mặc định
+
+* Trong Git Bash, gõ lệnh
+$ eval "$(ssh-agent -s)"
+$ ssh-add ~/.ssh/id_ed25519 
+hoặc
+$ ssh-add ~/.ssh/id_rsa
+
+BƯỚC 2: CÀI SSH KEY VÀO TÀI KHOẢN GITHUB CỦA BẠN
+* Đi đến thư mục %UserProfile%\.ssh\ rồi mở file: id_ed25519.pub hoặc id_rsa.pub trong Notepad
+và copy toàn bộ nội dung bên trong file.
+* Sau đó trong trình duyệt mở "https://github.com/settings/keys" chọn "New SSH Key"
+* Đặt tên cho Key SSH của bạn ở mục Title, chọn Authentication Key ở Key Type và dán nội dung của
+file mà bạn đã copy từ trước vào mục Key rồi ấn "Add SSH Key"
+* Sau đó GitHub sẽ yêu cầu bạn phải gõ mật khẩu của bạn để xắc nhận 
+
+========= Bài 4: =====================================================================================
+- Cách để lấy dữ liệu biến từ views.py vào file templates
+* Tạo một list có chứa dictionary
+* Trong dictionary đó thêm các key cùng với value mà sẽ lấy
+VD:
+rooms = [
+	{'id': 1, 'name': 'English'},
+    {'id': 2, 'name': 'Math'},
+    {'id': 3, 'name': 'Literature'}
+]
+* Trong VD, ta có thể lấy trực tiếp dữ liệu id và name từ trong list.
+* Sau đó trong file template mà bạn sẽ dùng để nhập dữ liệu.
+Tạo 1 div với 1 div con bên trong.
+* Trong div con, thêm {% for <tên bất kỳ> in rooms %} và ở cuối của div con đó, thêm {% endfor %}
+* Trong giữa endfor và for, viết thêm 1 div con và h hoặc p bất ỳ.
+* Trong nội dung của h hoặc p, ghi {{<tên bất kỳ đặt sẵn>}}
+VD:
+<div>
+	<div>
+		{% for room in rooms %}
+			<div>
+				<h3>
+					{{room.id}} - {{room.name}}
+				</h3>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+- Cách để chuyển đổi được hiện thị cho mỗi link mình bấm mà ko cần tạo một template mới
+* Trong file urls.py, thêm /<str:pk>/ ở cuối của path mà mình muốn chỉnh sửa.
+* Sau đó trong views.py thêm:
+room = None					# Để cho giá trị mặc định = None
+for i in rooms:
+	if i['id'] == int(pk):	# Để kiểm tra xem đường link mình có id ko
+		room = i 			# Đổi room thành i
+context = {'room': room}
+return render(request, 'base/room.html', context)
+* Trong room.html
+VD:
+<h1> Room {{room.name}}</h1>

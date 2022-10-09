@@ -1,0 +1,8 @@
+{
+	"cSpell.enableFiletypes": [
+		"!plaintext",
+		"!text"
+	],
+	"python.linting.pylintEnabled": true,
+	"python.linting.enabled": false
+}

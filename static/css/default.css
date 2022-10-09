@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+*{
+    margin: 0;
+    padding: 0;
+    background-color: #29b6f6;
+
+    font-family: Open Sans;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+#navbar {
+    background-color: #0086c3;
+    padding: 1rem;
+}
+
+/* Add More Css so it look like a box card */
+.subject-card {
+    background-color: white;
+}
+
+.navbar-items {
+    color: black;
+    font-size: 2.5em;
+    font-weight: 400;
+
+    text-align: center;
+    padding: 0.2em;
+    width: 15rem;
+}
+
+@media only screen and (max-width: 1080px){
+    .navbar-items {
+        font-size: 1.25em;
+        width: 7rem;
+    }
+}
