@@ -8,7 +8,11 @@ from django.contrib.staticfiles import views
 rooms = [
     {'id': 'english', 'name': 'English'},
     {'id': 'math', 'name': 'Math'},
-    {'id': 'literature', 'name': 'Literature'}
+    {'id': 'literature', 'name': 'Literature'},
+    {'id': 'geometry', 'name': 'Geometry'},
+    {'id': 'history', 'name': 'History'},
+    {'id': 'biology', 'name': 'Biology'},
+    {'id': 'technology', 'name': 'Technology'}
 ]
 
 def rootToHome(request):

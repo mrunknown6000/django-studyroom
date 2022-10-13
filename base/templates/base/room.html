@@ -1,5 +1,14 @@
 {% extends 'main.html' %}
 
+
+{% load tailwind_tags %}
+{% tailwind_css %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+<link rel="stylesheet" href="{% static '/css/default.css' %}">
+
 {% block content %}
 
 <h1>Room {{room.name}}</h1>

@@ -12,9 +12,12 @@
 {% block content %}
 <h1 class="mt-5">Main Subjects</h1>
 
-<div class="grid">
+<div class="grid grid-cols-4 gap-4 mr-4 ml-4">
 	{% for room in rooms %}
-	<div><a class="subject-card" href="{% url 'room' room.id %}"> {{room.name}}</a></div>
+	<div class="inline-block text-center subblock">
+		<a class="m-0 p-0 text-center" href="{% url 'room' room.id %}"> {{room.name}}</a>
+		
+	</div>
 	{% endfor %}
 </div>
 
