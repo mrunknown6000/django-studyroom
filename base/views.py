@@ -6,13 +6,20 @@ from django.contrib.staticfiles import views
 
 # Create your views here.
 rooms = [
-    {'id': 'english', 'name': 'English'},
-    {'id': 'math', 'name': 'Math'},
-    {'id': 'literature', 'name': 'Literature'},
-    {'id': 'geometry', 'name': 'Geometry'},
-    {'id': 'history', 'name': 'History'},
-    {'id': 'biology', 'name': 'Biology'},
-    {'id': 'technology', 'name': 'Technology'}
+    {'id': 'english', 'name': 'English', 'priority': 1, 
+    'subdir': ['Dictionary', 'Translator']},
+    {'id': 'math', 'name': 'Math', 'priority': 1, 
+    'subdir': ['Calculator', 'Convertor', 'Graphs']},
+    {'id': 'literature', 'name': 'Literature', 'priority': 1, 
+    'subdir': ['Examples Literature', 'Other...']},
+    {'id': 'geometry', 'name': 'Geometry', 'priority': 2, 
+    'subdir': ['World Map', 'Other Maps']},
+    {'id': 'history', 'name': 'History', 'priority': 3, 
+    'subdir': ['Other...']},
+    {'id': 'biology', 'name': 'Biology', 'priority': 3, 
+    'subdir': ['Other...']},
+    {'id': 'technology', 'name': 'Technology', 'priority': 3, 
+    'subdir': ['Other...']}
 ]
 
 def rootToHome(request):

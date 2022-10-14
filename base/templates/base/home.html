@@ -10,16 +10,23 @@
 <link rel="stylesheet" href="{% static '/css/default.css' %}">
 
 {% block content %}
-<h1 class="mt-5">Main Subjects</h1>
 
-<div class="grid grid-cols-4 gap-4 mr-4 ml-4">
+<h1 class="font-bold text-5xl">Subjects Tools</h1>
+<div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mr-4 ml-4">
 	{% for room in rooms %}
 	<div class="inline-block text-center subblock">
-		<a class="m-0 p-0 text-center" href="{% url 'room' room.id %}"> {{room.name}}</a>
-		
+		<a class="m-0 p-0 text-center underline underline-offset-auto" href="{% url 'room' room.id %}"> {{room.name}}</a>
+
+		<ul>
+			{% for tool in room.subdir %}
+			<li class="subblock-items">{{tool}}</li>
+			{% endfor %}
+		</ul>
 	</div>
 	{% endfor %}
 </div>
+
+<h1 class="font-bold text-5xl">Some Tests for Practicing</h1>
 
 
 {% endblock content %}
