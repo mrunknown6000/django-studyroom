@@ -59,6 +59,15 @@ svg {
 
 
 /* Add More Css so it look like a box card */
+.unactive {
+    color: #6b7280;
+    border-bottom: 1px solid #6b7280;
+}
+.unactive:hover {
+    color: #4b5563;
+    border-bottom: 2px solid #4b5563;
+}
+
 .subblock {
     font-size: 1.75rem;
     background-color: #73e8ff;

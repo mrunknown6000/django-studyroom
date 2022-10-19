@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+{% load tailwind_tags %}
+{% tailwind_css %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+<link rel="stylesheet" href="{% static '/css/default.css' %}">
+
+{% comment %} NOTE: PLZ DO 'HASH for DIV' {% endcomment %}
+{% block content %}
+<div>
+	<h1 class="text-4xl text-blue-600 font-sans text-center font-bold">English Tools</h1>
+	<div class="text-lg font-sans text-center " id="toolbar">
+		<ul class="justify-center inline-flex border-2 -mb-px">
+			<li class="mr-2">
+				<a href="#dictionary" class="inline-block p-4 text-blue-400 rounded-t-lg border-b-2 border-blue-600">
+					Dictionary
+				</a>
+			</li>
+			<li class="mr-2">
+				<a href="#translator" class="inline-block p-4 rounded-t-lg unactive">
+					Translator
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+{% endblock content %}
+

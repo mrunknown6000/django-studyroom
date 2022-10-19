@@ -1,5 +1,6 @@
-from turtle import settiltangle
-from urllib import response
+
+
+# Django Stuff
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.staticfiles import views
@@ -21,7 +22,6 @@ rooms = [
     {'id': 'technology', 'name': 'Technology', 'priority': 3, 
     'subdir': ['Other...']}
 ]
-
 def rootToHome(request):
     return redirect('home')
 
@@ -36,9 +36,10 @@ def home(request):
 
 
 def room(request, pk):
-    room = None
+    selRoom = None
     for i in rooms:
         if i['id'] == str(pk):
-            room = i
+            selRoom = i
     context = {'room': room}
-    return render(request, 'base/room.html', context)
+    url = 'base/subjects/room.'+selRoom['id']+'.html'
+    return render(request, url, context)

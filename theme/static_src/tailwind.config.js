@@ -42,6 +42,20 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
+        fontFamily: {
+            sans: ['Open Sans'],
+            serif: ['Times New Roman'],
+        },
+        colors: {
+            blue: {
+                100: '#72e7ff',
+                200: '#28b5f4',
+                300: '#63a3ff',
+                400: '#0085c1',
+                500: '#1775d1',
+                600: '#004a9f',
+            },
+        },
         extend: {},
     },
     plugins: [
