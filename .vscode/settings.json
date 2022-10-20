@@ -4,5 +4,8 @@
 		"!text"
 	],
 	"python.linting.pylintEnabled": true,
-	"python.linting.enabled": false
+	"python.linting.enabled": false,
+	"cSpell.words": [
+		"whitenoise"
+	]
 }
