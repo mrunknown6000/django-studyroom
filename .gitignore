@@ -1,3 +1,6 @@
-.vscode/launch.json
+.idea/
+.vscode/
 
 staticfiles/*
+test.py
+main.asm

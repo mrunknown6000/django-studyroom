@@ -4,8 +4,19 @@
 @tailwind utilities;
 @tailwind variants;
 
+:root {
+    --primary_color: #28b5f4;
+    --primary_dark_color: #0085c1;
+    --primary_light_color: #72e7ff;
+
+    --secondary_color: #1775d1;
+    --secondary_dark_color: #004a9f;
+    --secondary_light_color: #63a3ff;
+}
+
 html, body{
     margin: 0;
+    margin-top: 10vh;
     padding: 0;
     background-color: #29b6f6;
 
@@ -19,20 +30,31 @@ h1 {
     text-align: center;
     font-size: 2rem;
     
-    color: black
+    color: white;
 }
 svg {
     cursor: pointer;
 }
 
 
-#navbar {
-    background-color: #0085c1;
+#navbarTrue {
+    background-color: var(--secondary_color);
     padding: 1rem;
-    padding-top: 1.5rem;
+    padding-top: 1.5rem;    
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    
 }
 #svg2{
     transition: all 0.5s ease;
+
+    /* TODO: FIX NOW!!! SVG DOESNT RESIZE */
+    height: 250%;
+
+    border: 0.5rem solid transparent;
+    border-radius: 2vmin;
+
 }
 #svg2:hover #partial2{
     animation: iconAnimate 1s ease;
@@ -40,6 +62,11 @@ svg {
 #svg2:hover #full{
     animation: iconAnimate 1.5s ease-out;
 }
+#svg-icon {
+    width: 0vh;
+    height: auto;
+}
+
 @keyframes iconAnimate {
     0% {
         opacity: 1;
@@ -52,11 +79,9 @@ svg {
     }
 }
 #svg2:hover{
-    border: 0.5rem solid #004a9f;
-    border-radius: 25%;
-    background-color: #004a9f;
+    background-color: var(--secondary_dark_color);
+    border-color: var(--secondary_dark_color);
 }
-
 
 /* Add More Css so it look like a box card */
 .unactive {
@@ -70,22 +95,83 @@ svg {
 
 .subblock {
     font-size: 1.75rem;
-    background-color: #73e8ff;
+    background-color: var(--secondary_color);
+    color: white;
     padding: 0;
     margin: 0;
 
-    border: 1px solid #73e8ff;
     border-radius: 8px;
+    font-weight: bold;
 }
 .subblock-items {
-
     font-size: 1rem;
-    color: rgb(46, 46, 46);
+    font-weight: normal;
+    color: white;
 }
 
 .navbar-items {
-    color: #29b6f6;
-    font-size: 2.5em;
+    color: var(--primary_color);
+    font-size: 1.3rem;
+    font-weight: bold;
+
+
+    text-align: center;
+    /* padding-right: 0.2em; */
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    padding: 0.5rem;
+    margin: 0.25rem;
+    transition: all 0.25s ease-in-out;
+    border-bottom: 2px solid transparent;
+}
+.navbar-items:hover {
+    border-color: var(--primary_light_color);
+    color: var(--primary_light_color)
+    /* border-radius: 25%; */
+    /* background-color: var(--secondary_dark_color); */
+}
+.collapse1, .collapse2, .collapse3{
+    display: initial;
+}
+
+.navbar-special-colapse {
+    display: none
+
+}
+
+@media (max-width: 1024px) {
+    .navbar-items { font-size: 2rem;}
+    .collapse3 { display: none; }
+    .icon { align-items: center;}
+}
+
+@media (max-width: 640px) {
+    .collapse2 { display: none; }
+}
+
+/* PHONES DEVICES */
+@media (max-width: 450px) {
+    .collapse1 { display: none; }
+    .navbar-special-colapse { display: initial}
+}
+
+
+
+#sidebar {
+    height: 100%;
+    background-color: var(--secondary_dark_color);
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    width: 0%;
+}
+.sidebar-items {
+    color: var(--primary_color);
+    font-size: 1.5em;
     font-weight: 600;
 
 
@@ -96,32 +182,33 @@ svg {
     -webkit-backface-visibility: hidden;
     padding: 0.5rem;
     margin: 0.25rem;
-    transition: all 1s ease;
+    transition: all 0.25s ease-in-out;
+    border-bottom: 2px solid transparent;
 }
-.navbar-items:hover {
-    /* border: 0.5rem solid #; */
-    border-radius: 25%;
-    background-color: #004a9f;
-}
-.collapse1, .collapse2, .collapse3{
-    display: initial;
-}
-
-@media (max-width: 1024px) {
-    .collapse3 { display: none; }
-    .icon { align-items: center;}
+.sidebar-items:hover {
+    border-color: var(--primary_light_color);
+    color: var(--primary_light_color)
+    /* border-radius: 25%; */
+    /* background-color: var(--secondary_dark_color); */
 }
 
-@media (max-width: 640px) {
-    .collapse2 { display: none; }
+
+.text-block {
+    color: white;
 }
 
-@media (max-width: 450px) {
-    .collapse1 { display: none; }
+/* FOR WEBSITES THING */
+.question-form {
+	background-color: white;
+    margin-top: 0.5em;
+    margin-bottom: 0.3em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    height: 100%;
+    
+    font-size: 1.5rem;
+    text-align: left;
 }
-
-@media only screen and (max-width: 1280px){
-    .navbar-items {
-        font-size: 1.75em;
-    }
+#itemframe {
+    background-color: var(--secondary_color);
 }

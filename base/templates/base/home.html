@@ -1,6 +1,5 @@
 {% extends 'main.html' %}
 
-
 {% load tailwind_tags %}
 {% tailwind_css %}
 
@@ -15,7 +14,7 @@
 <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mr-4 ml-4">
 	{% for room in rooms %}
 	<div class="inline-block text-center subblock">
-		<a class="m-0 p-0 text-center underline underline-offset-auto" href="{% url 'room' room.id %}"> {{room.name}}</a>
+		<a class="m-0 p-0 text-center " href="{% url 'room' room.id %}"> {{room.name}}</a>
 
 		<ul>
 			{% for tool in room.subdir %}
